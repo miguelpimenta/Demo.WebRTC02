@@ -1,7 +1,17 @@
 const socket = io("/");
+
+/*
 const myPeer = new Peer(undefined, {
-  host: "/",
-  port: "3001",
+  host: "localhost",
+  port: "9000",
+  path: '/peer'
+});
+*/
+
+const myPeer = new Peer(undefined, {
+  host: "demo-peerjs-server.herokuapp.com",
+  port: "80",
+  path: "/peer",
 });
 
 const videoGrid = document.getElementById("video-grid");
@@ -49,9 +59,11 @@ myPeer.on("open", (id) => {
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream);
   const video = document.createElement("video");
+
   call.on("stream", (userVideoStream) => {
     addVideoStream(video, userVideoStream);
   });
+
   call.on("close", () => {
     video.remove();
   });
@@ -66,5 +78,5 @@ function addVideoStream(video, stream) {
   });
   videoGrid.append(video);
   document.getElementById("video-grid").append(video);
-  console.log('Append video')
+  console.log("Append video");
 }
