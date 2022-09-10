@@ -10,7 +10,7 @@ const myPeer = new Peer(undefined, {
 
 const myPeer = new Peer(undefined, {
   host: "demo-peerjs-server.herokuapp.com",
-  port: "80",
+  port: "443",
   path: "/peer",
 });
 
