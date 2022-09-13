@@ -7,11 +7,12 @@ const myPeer = new Peer(undefined, {
   path: '/peer'
 });
 */
+const PEER_SERVER_PORT = 80;
 
 const myPeer = new Peer(undefined, {
   host: "demo-peerjs-server.herokuapp.com",
-  port: "443",
-  path: "/peer",
+  port: PEER_SERVER_PORT,
+  path: "/peer", 
 });
 
 const videoGrid = document.getElementById("video-grid");

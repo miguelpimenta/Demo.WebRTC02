@@ -24,8 +24,8 @@ io.on("connection", (socket) => {
     socket.broadcast.to(roomId).emit("user-connected", userId);
 
     socket.on("disconnect", () => {
-      console.log(`Disconnected: Room Id: ${roomId} - User Id: ${userId}`);
-      socket.to(roomId).emit("user-disconnected", userId);
+      console.log(`Disconnected: Room Id: ${roomId} - User Id: ${userId}`);      
+      socket.broadcast.to(roomId).emit("user-disconnected", userId);
     });
   });
 });
