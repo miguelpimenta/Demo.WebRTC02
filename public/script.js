@@ -10,9 +10,9 @@ const myPeer = new Peer(undefined, {
 const PEER_SERVER_PORT = 80;
 
 const myPeer = new Peer(undefined, {
-  host: "demo-peerjs-server.herokuapp.com",
-  port: PEER_SERVER_PORT,
-  path: "/peer", 
+    host: "demo-peerjs-server.herokuapp.com",
+    port: "80",
+    path: "/peer",
 });
 
 const videoGrid = document.getElementById("video-grid");
@@ -23,61 +23,64 @@ myVideo.muted = true;
 const peers = {};
 
 navigator.mediaDevices
-  .getUserMedia({
-    video: true,
-    audio: true,
-  })
-  .then((stream) => {
-    addVideoStream(myVideo, stream);
+    .getUserMedia({
+        video: true,
+        audio: true,
+    })
+    .then((stream) => {
 
-    myPeer.on("call", (call) => {
-      call.answer(stream);
+        document.querySelector("#local-video").srcObject = stream;
+        document.querySelector("#local-video").play();
+        //addVideoStream(myVideo, stream);
 
-      const video = document.createElement("video");
+        myPeer.on("call", (call) => {
+            call.answer(stream);
 
-      call.on("stream", (userVideoStream) => {
-        addVideoStream(video, userVideoStream);
-      });
+            const video = document.createElement("video");
+
+            call.on("stream", (userVideoStream) => {
+                addVideoStream(video, userVideoStream);
+            });
+        });
+
+        socket.on("user-connected", (userId) => {
+            console.log("User Connected: " + userId);
+            connectToNewUser(userId, stream);
+        });
     });
-
-    socket.on("user-connected", (userId) => {
-      console.log("User Connected: " + userId);
-      connectToNewUser(userId, stream);
-    });
-  });
 
 socket.on("user-disconnected", (userId) => {
-  console.log("User Disconnected: " + userId);
-  if (peers[userId]) {
-    peers[userId].close();
-  }
+    console.log("User Disconnected: " + userId);
+    if (peers[userId]) {
+        peers[userId].close();
+    }
 });
 
 myPeer.on("open", (id) => {
-  socket.emit("join-room", ROOM_ID, id);
+    socket.emit("join-room", ROOM_ID, id);
 });
 
 function connectToNewUser(userId, stream) {
-  const call = myPeer.call(userId, stream);
-  const video = document.createElement("video");
+    const call = myPeer.call(userId, stream);
+    const video = document.createElement("video");
 
-  call.on("stream", (userVideoStream) => {
-    addVideoStream(video, userVideoStream);
-  });
+    call.on("stream", (userVideoStream) => {
+        addVideoStream(video, userVideoStream);
+    });
 
-  call.on("close", () => {
-    video.remove();
-  });
+    call.on("close", () => {
+        video.remove();
+    });
 
-  peers[userId] = call;
+    peers[userId] = call;
 }
 
 function addVideoStream(video, stream) {
-  video.srcObject = stream;
-  video.addEventListener("loadedmetadata", () => {
-    video.play();
-  });
-  videoGrid.append(video);
-  document.getElementById("video-grid").append(video);
-  console.log("Append video");
+    video.srcObject = stream;
+    video.addEventListener("loadedmetadata", () => {
+        video.play();
+    });
+    videoGrid.append(video);
+    //document.getElementById("video-grid").append(video);
+    console.log("Append video");
 }
