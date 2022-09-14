@@ -15,6 +15,7 @@ video {
     margin: 10px;*/
     height: 50%;
     width: 50%;
+    min-width: 350px;
     overflow: auto;
     border: 2px solid rgb(44, 95, 233);
 }
