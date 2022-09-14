@@ -7,17 +7,19 @@ const myPeer = new Peer(undefined, {
   path: '/peer'
 });
 */
-
+/*
 const myPeer = new Peer(undefined, {
     host: "demo-peerjs-server.herokuapp.com",
     port: "80",
     path: "/peer",
-});
+});*/
+
+const myPeer = new Peer();
 
 const videoGrid = document.getElementById("video-grid");
-const myVideo = document.createElement("video");
+//const myVideo = document.createElement("video");
 
-myVideo.muted = true;
+//myVideo.muted = true;
 
 const peers = {};
 
