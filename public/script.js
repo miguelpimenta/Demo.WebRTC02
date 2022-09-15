@@ -18,9 +18,6 @@ const myPeer = new Peer();
 
 const videoGrid = document.getElementById("video-grid");
 
-//const myVideo = document.createElement("video");
-//myVideo.muted = true;
-
 const peers = {};
 
 navigator.mediaDevices
@@ -31,7 +28,7 @@ navigator.mediaDevices
     .then((stream) => {
 
         document.querySelector("#local-video").srcObject = stream;
-        document.querySelector("#local-video").play();        
+        document.querySelector("#local-video").play();
         document.querySelector("#local-video").muted = true;
         //addVideoStream(myVideo, stream);
 
@@ -82,7 +79,7 @@ function addVideoStream(video, stream) {
     video.addEventListener("loadedmetadata", () => {
         video.play();
     });
+
     videoGrid.append(video);
-    //document.getElementById("video-grid").append(video);
     console.log("Append video");
 }
