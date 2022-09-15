@@ -1,31 +1,34 @@
 {
-  "name": "Demo.WebRTC02",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "dependencies": {
-    "ejs": "^3.1.8",
-    "express": "^4.18.1",
-    "socket.io": "^4.5.2",
-    "uuid": "^9.0.0"
-  },
-  "devDependencies": {
-    "dotenv": "^16.0.2",
-    "nodemon": "^2.0.19"
-  },
-  "scripts": {
-    "devstart": "nodemon server.js",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/miguelpimenta/Demo.WebRTC02.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/miguelpimenta/Demo.WebRTC02/issues"
-  },
-  "homepage": "https://github.com/miguelpimenta/Demo.WebRTC02#readme"
+    "name": "Demo.WebRTC02",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "engines": {
+        "node": "17.9.0"
+    },
+    "dependencies": {
+        "ejs": "^3.1.8",
+        "express": "^4.18.1",
+        "socket.io": "^4.5.2",
+        "uuid": "^9.0.0"
+    },
+    "devDependencies": {
+        "dotenv": "^16.0.2",
+        "nodemon": "^2.0.19"
+    },
+    "scripts": {
+        "devstart": "nodemon server.js",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/miguelpimenta/Demo.WebRTC02.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/miguelpimenta/Demo.WebRTC02/issues"
+    },
+    "homepage": "https://github.com/miguelpimenta/Demo.WebRTC02#readme"
 }
